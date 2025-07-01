@@ -29,8 +29,7 @@ variable {K : Type*} [NontriviallyNormedField K]
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace K E]
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace K F]
 variable {G : Type*} [NormedAddCommGroup G] [NormedSpace K G]
-variable {G' : Type*} [NormedAddCommGroup G'] [NormedSpace K G']
-variable {f f₀ f₁ g : E → F} {x} {s t}
+variable {f : E → F} {x} {s}
 
 
 theorem differentiableOn_id' : DifferentiableOn K (fun x : E => x) s :=
@@ -53,89 +52,9 @@ end lambda_rules
 
 end Missing
 
-
--- mark definition
-attribute [fun_prop]
-  Differentiable
-  DifferentiableAt
-  DifferentiableOn
-
-
 -- lambda rules
 attribute [fun_prop]
-  differentiable_id'
-  differentiable_const
   Differentiable.comp'
-
-  differentiableAt_id'
-  differentiableAt_const
   DifferentiableAt.comp'
-
   differentiableOn_id'
-  differentiableOn_const
   DifferentiableOn.comp'
-
--- product
-attribute [fun_prop]
-  Differentiable.prod
-  Differentiable.fst
-  Differentiable.snd
-
-  DifferentiableAt.prod
-  DifferentiableAt.fst
-  DifferentiableAt.snd
-
-  DifferentiableOn.prod
-  DifferentiableOn.fst
-  DifferentiableOn.snd
-
--- transitions
-attribute [fun_prop]
-  Differentiable.differentiableAt
-  Differentiable.differentiableOn
-  DifferentiableAt.continuousAt
-  DifferentiableOn.continuousOn
-
--- algebra
-attribute [fun_prop]
-  Differentiable.add
-  Differentiable.sub
-  Differentiable.neg
-  Differentiable.mul
-  Differentiable.smul
-  Differentiable.div
-  Differentiable.inv'
-  Differentiable.inv
-
-  DifferentiableAt.add
-  DifferentiableAt.sub
-  DifferentiableAt.neg
-  DifferentiableAt.mul
-  DifferentiableAt.smul
-  DifferentiableAt.div
-  DifferentiableAt.inv'
-  DifferentiableAt.inv
-
-  DifferentiableOn.add
-  DifferentiableOn.sub
-  DifferentiableOn.neg
-  DifferentiableOn.mul
-  DifferentiableOn.smul
-  DifferentiableOn.div
-  DifferentiableOn.inv'
-  DifferentiableOn.inv
-
-
--- special function
-attribute [fun_prop]
-  Differentiable.exp
-  Differentiable.log
-  Differentiable.pow
-
-  DifferentiableAt.exp
-  DifferentiableAt.log
-  DifferentiableAt.pow
-
-  DifferentiableOn.exp
-  DifferentiableOn.log
-  DifferentiableOn.pow
