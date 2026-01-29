@@ -22,7 +22,9 @@ semantics for regular logic.
 
 * We show that every regular category has strong epi-mono factorisations, following Theorem 1.11
   in [Gran2021].
-* We show that every regular category satisfies Frobenius reciprocity.
+* We show that every regular category satisfies Frobenius reciprocity. That is, that in their
+  internal language, we have `∃ x, (P(x) ⊓ Q)` iff `(∃ x, P(x)) ⊓ Q`, for a proposition `Q` not
+  depending on `x`.
 
 ## Future work
 * Show that every topos is regular
@@ -215,7 +217,12 @@ noncomputable def frobeniusStrongEpiMonoFactorisation :
       (inf_isPullback ((«exists» f).obj A') B').flip.lift_snd]
     simp [← imageFactorisation_F_m]
 
-theorem frobenius_reciprocity :
+/--
+Regular categories satisfy Frobenius reciprocity. That is, in the internal language of regular
+categories, we have `∃ x, (P(x) ⊓ Q)` iff `(∃ x, P(x)) ⊓ Q`, for a proposition `Q` not depending on
+`x`.
+-/
+theorem exists_inf_pullback_eq_exists_inf :
     («exists» f).obj (A' ⊓ (Subobject.pullback f).obj B') = («exists» f).obj A' ⊓ B' :=
   eq_of_comm
     (IsImage.isoExt (imageFactorisation _ _).isImage
