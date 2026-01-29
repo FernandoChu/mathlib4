@@ -176,17 +176,17 @@ This morphism is part of a StrongEpiMonoFactorosation of
 `(A' ⊓ (Subobject.pullback f).obj B').arrow ≫ f`, see `frobeniusStrongEpiMonoFactorisation`.
 -/
 noncomputable def frobeniusMorphism :
-  underlying.obj (A' ⊓ (Subobject.pullback f).obj B') ⟶ underlying.obj ((«exists» f).obj A' ⊓ B') :=
+    underlying.obj (A' ⊓ (Subobject.pullback f).obj B') ⟶ underlying.obj ((«exists» f).obj A' ⊓ B') :=
   (inf_isPullback ((«exists» f).obj A') B').flip.lift
     ((ofLE _ _ (inf_le_right A' ((Subobject.pullback f).obj B'))) ≫ (pullbackπ _ _))
     ((ofLE _ _ (inf_le_left A' ((Subobject.pullback f).obj B'))) ≫ (imageFactorisation f A').F.e)
     (by simp [← imageFactorisation_F_m, (isPullback _ _).w])
 
 lemma frobeniusMorphism_isPullback :
-  IsPullback (frobeniusMorphism f A' B')
-    ((ofLE _ _ (inf_le_left A' ((Subobject.pullback f).obj B'))))
-    ((ofLE _ _ (inf_le_left ((«exists» f).obj A') B')))
-    (imageFactorisation _ _).F.e := by
+    IsPullback (frobeniusMorphism f A' B')
+      ((ofLE _ _ (inf_le_left A' ((Subobject.pullback f).obj B'))))
+      ((ofLE _ _ (inf_le_left ((«exists» f).obj A') B')))
+      (imageFactorisation _ _).F.e := by
   apply IsPullback.of_right (t := (inf_isPullback ((«exists» f).obj A') B').flip)
     (p := by simp [frobeniusMorphism])
   simpa [frobeniusMorphism, IsPullback.lift_fst, ← imageFactorisation_F_m,
