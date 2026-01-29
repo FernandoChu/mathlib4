@@ -178,11 +178,7 @@ noncomputable def frobeniusMorphism :
   (inf_isPullback ((«exists» f).obj A') B').flip.lift
     ((ofLE _ _ (inf_le_right A' ((Subobject.pullback f).obj B'))) ≫ (pullbackπ _ _))
     ((ofLE _ _ (inf_le_left A' ((Subobject.pullback f).obj B'))) ≫ (imageFactorisation f A').F.e)
-    (by
-      simp only [Category.assoc]
-      have : (imageFactorisation f A').F.m = ((«exists» f).obj A').arrow := rfl
-      rw [← this, (imageFactorisation f A').F.fac, (isPullback _ _).w]
-      simp)
+    (by simp [← imageFactorisation_F_m, (isPullback _ _).w])
 
 lemma frobeniusMorphism_isPullback :
   IsPullback (frobeniusMorphism f A' B')
@@ -191,12 +187,9 @@ lemma frobeniusMorphism_isPullback :
     (imageFactorisation _ _).F.e := by
   apply IsPullback.of_right (t := (inf_isPullback ((«exists» f).obj A') B').flip)
     (p := by simp [frobeniusMorphism])
-  simp only [frobeniusMorphism, IsPullback.lift_fst]
-  have : (imageFactorisation f A').F.m = ((«exists» f).obj A').arrow := rfl
-  rw [← this, (imageFactorisation f A').F.fac,
-    IsPullback.paste_horiz_iff (isPullback f B')]
-  · exact (inf_isPullback A' ((Subobject.pullback f).obj B')).flip
-  · simp
+  simpa [frobeniusMorphism, IsPullback.lift_fst, ← imageFactorisation_F_m,
+    (isPullback f B').paste_horiz_iff ] using
+    (inf_isPullback A' ((Subobject.pullback f).obj B')).flip
 
 instance : IsRegularEpi (frobeniusMorphism f A' B') := by
   apply regularEpiIsStableUnderBaseChange.of_isPullback (frobeniusMorphism_isPullback f A' B').flip
@@ -218,11 +211,9 @@ noncomputable def frobeniusStrongEpiMonoFactorisation :
   m := ((«exists» f).obj A' ⊓ B').arrow
   e := frobeniusMorphism f A' B'
   fac := by
-    simp only [frobeniusMorphism]
-    have : (imageFactorisation f A').F.m = ((«exists» f).obj A').arrow := rfl
-    rw [← inf_comp_left, ← Category.assoc, (inf_isPullback ((«exists» f).obj A') B').flip.lift_snd,
-      Category.assoc, ← this, (imageFactorisation f A').F.fac]
-    simp
+    rw [frobeniusMorphism, ← inf_comp_left, ← Category.assoc,
+      (inf_isPullback ((«exists» f).obj A') B').flip.lift_snd]
+    simp [← imageFactorisation_F_m]
 
 theorem frobenius_reciprocity :
     («exists» f).obj (A' ⊓ (Subobject.pullback f).obj B') = («exists» f).obj A' ⊓ B' :=
