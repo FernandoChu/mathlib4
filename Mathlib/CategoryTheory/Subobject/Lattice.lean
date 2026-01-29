@@ -362,12 +362,10 @@ instance semilatticeInf {B : C} : SemilatticeInf (Subobject B) where
   inf_le_right := inf_le_right
   le_inf := le_inf
 
-@[reassoc (attr := simp)]
 lemma inf_comp_left {A : C} (f g : Subobject A) :
    (ofLE (f ⊓ g) f (by simp)) ≫ f.arrow = (f ⊓ g).arrow :=
   ofLE_arrow (inf_le_left f g)
 
-@[reassoc (attr := simp)]
 lemma inf_comp_right {A : C} (f g : Subobject A) :
    (ofLE (f ⊓ g) g (by simp)) ≫ g.arrow = (f ⊓ g).arrow :=
   ofLE_arrow (inf_le_right f g)
