@@ -7,7 +7,6 @@ module
 
 public import Mathlib.CategoryTheory.ExtremalEpi
 public import Mathlib.CategoryTheory.MorphismProperty.Limits
-public import Mathlib.CategoryTheory.Limits.Preorder
 public import Mathlib.CategoryTheory.Sites.Coherent.Basic
 
 /-!
