@@ -176,7 +176,8 @@ This morphism is part of a StrongEpiMonoFactorosation of
 `(A' ⊓ (Subobject.pullback f).obj B').arrow ≫ f`, see `frobeniusStrongEpiMonoFactorisation`.
 -/
 noncomputable def frobeniusMorphism :
-    underlying.obj (A' ⊓ (Subobject.pullback f).obj B') ⟶ underlying.obj ((«exists» f).obj A' ⊓ B') :=
+    underlying.obj (A' ⊓ (Subobject.pullback f).obj B') ⟶
+      underlying.obj ((«exists» f).obj A' ⊓ B') :=
   (inf_isPullback ((«exists» f).obj A') B').flip.lift
     ((ofLE _ _ (inf_le_right A' ((Subobject.pullback f).obj B'))) ≫ (pullbackπ _ _))
     ((ofLE _ _ (inf_le_left A' ((Subobject.pullback f).obj B'))) ≫ (imageFactorisation f A').F.e)
