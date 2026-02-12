@@ -81,7 +81,7 @@ theorem equalizerSubobject_arrow_comp :
     (equalizerSubobject f g).arrow ≫ f = (equalizerSubobject f g).arrow ≫ g := by
   rw [← equalizerSubobject_arrow, Category.assoc, Category.assoc, equalizer.condition]
 
-@[reassoc (attr := simp)]
+@[simp]
 theorem equalizerSubobject_of_self : equalizerSubobject f f = ⊤ := by
   apply mk_eq_top_of_isIso
 
